@@ -6,6 +6,7 @@ import { github } from "../assets";
 import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
+import { Link, Navigate, Route, useParams } from "react-router-dom";
 
 const ProjectCard = ({
   index,
@@ -14,6 +15,7 @@ const ProjectCard = ({
   tags,
   image,
   source_code_link,
+  id
 }) => {
   return (
     <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
@@ -27,7 +29,6 @@ const ProjectCard = ({
             alt={name}
             className="w-full h-full object-cover rounded-2xl"
           />
-
           <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
             {/* can be added one more and change the icon to the desired icon for live projects */}
             <div
@@ -45,7 +46,7 @@ const ProjectCard = ({
 
         <div className="mt-5">
           <h3 className="text-white fond-bold text-[24px]">{name}</h3>
-          <p className="mt-2 text-secondary text-[14px]">{description}</p>
+          <p className="mt-2 text-secondary text-[14px]">{description.length > 200 ? `${description.substring(0,200)}...` : description}</p>
         </div>
 
         <div className="mt-4 flex flex-wrap gap-2">
@@ -83,7 +84,9 @@ const Works = () => {
 
       <div className="mt-20 flex flex-wrap gap-7">
         {projects.map((project, index) => (
-          <ProjectCard key={`project-${index}`} index={index} {...project} />
+          <Link to={`/details/${project.id}`} state={{data:project}}>
+            <ProjectCard key={`project-${index}`} index={index} {...project} />
+          </Link>
         ))}
       </div>
     </>

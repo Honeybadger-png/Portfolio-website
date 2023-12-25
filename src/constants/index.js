@@ -46,6 +46,14 @@ export const navLinks = [
   },
 ];
 
+export const detailLinks = [
+  {
+    id:"home",
+    link:"/",
+    title:"Home"
+  }
+]
+
 const services = [
   {
     title: "Web Developer",
@@ -161,6 +169,26 @@ const testimonials = [
 
 const projects = [
   {
+    id:"Certificates",
+    name: "My Certificates",
+    description:
+    "In my journey, I have taken some courses and their certificates can be reached from my github link.",
+    tags: [
+      {
+        name: "IBM Full Stack Course",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Cyber Security Analist Programme",
+        color: "green-text-gradient",
+      },
+    ],
+    image: courses,
+    images: [{image:courses,title:"screenshot"},{image:starbucks,title:"screenshot2"}],
+    source_code_link: "https://github.com/Honeybadger-png/certificates",
+  },
+  {
+    id:"Flutter",
     name: "Flutter Projects",
     description:
       "All my Flutter projects source codes can be seen from my github link.Also repository includes little porjects that i have worked on while learning Flutter.My project called Parsley to help people for their daily meal plans.I have used Edamam API to reach recipes from different cuisines.Also, I designed chatbot for users to interact with ChatGPT to help to acces different solutions for their problem.",
@@ -179,24 +207,8 @@ const projects = [
       },
     ],
     image: parsley,
+    images: [{image:parsley,title:"screenshot"},{image:starbucks,title:"screenshot2"}],
     source_code_link: "https://github.com/Honeybadger-png/Flutter-Projects",
-  },
-  {
-    name: "My Certificates",
-    description:
-      "In my journey, I have taken some courses and their certificates can be reached from my github link.",
-    tags: [
-      {
-        name: "IBM Full Stack Course",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "Cyber Security Analist Programme",
-        color: "green-text-gradient",
-      },
-    ],
-    image: courses,
-    source_code_link: "https://github.com/Honeybadger-png/certificates",
   },
 ];
 
