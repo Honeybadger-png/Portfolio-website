@@ -36,6 +36,11 @@ import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
 import parsley from "./Parsley.png";
 import courses from "./courses.gif";
+import ibm from "./ibm.png"
+import cyber from "./cyber-analyst.png"
+import recipe from "./Recipe.png"
+import chatgpt from "./ChatGptPage.png"
+import ParsleySignIn from "./ParsleySignin.png"
 
 export {
   courses,
@@ -44,6 +49,11 @@ export {
   logo,
   mertlogo,
   php,
+  ibm,
+  recipe,
+  chatgpt,
+  ParsleySignIn,
+  cyber,
   laravel,
   blender,
   backend,

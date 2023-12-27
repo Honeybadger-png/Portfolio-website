@@ -29,6 +29,11 @@ import {
   blender,
   parsley,
   courses,
+  ibm,
+  cyber,
+  ParsleySignIn,
+  chatgpt,
+  recipe,
 } from "../assets";
 
 export const navLinks = [
@@ -172,7 +177,7 @@ const projects = [
     id:"Certificates",
     name: "My Certificates",
     description:
-    "In my journey, I have taken some courses and their certificates can be reached from my github link.",
+    "Before diving into my projects I have taken some courses that helped me to improve my skills and knowledge about different technologies. I have taken courses in platforms like coursera and udemy. One of them was Full Stack Course provide by IBM. Also I had experience with Cyber Security Analist Programme. I have tried to Show certificates in my github repository. Also, Some small project that i have worked on while taking courses are also included in my repository. Also, I have React and Node.js certificates but i have improved my knowledge by watchirng tutorials and reading documentations.",
     tags: [
       {
         name: "IBM Full Stack Course",
@@ -184,14 +189,14 @@ const projects = [
       },
     ],
     image: courses,
-    images: [{image:courses,title:"screenshot"},{image:starbucks,title:"screenshot2"}],
+    images: [{image:ibm,title:"IBM Full Stack Developer Certificate",link:"https://github.com/Honeybadger-png/certificates/tree/main/Full%20stack%20developer%20courses%20certificates"},{image:cyber,title:"Cyber Security Analyst Certificates",link:"https://github.com/Honeybadger-png/certificates/tree/main/cyber%20security%20analist%20certificates"}],
     source_code_link: "https://github.com/Honeybadger-png/certificates",
   },
   {
     id:"Flutter",
     name: "Flutter Projects",
     description:
-      "All my Flutter projects source codes can be seen from my github link.Also repository includes little porjects that i have worked on while learning Flutter.My project called Parsley to help people for their daily meal plans.I have used Edamam API to reach recipes from different cuisines.Also, I designed chatbot for users to interact with ChatGPT to help to acces different solutions for their problem.",
+      "This project is made for my final project in my university. I aimed to learn mobile development and use my knowledge to make this project. In the first,I have tried to Kotlin but later I have decided to use Flutter. My idea was to make a app to help people to find healthy recipes. I wanted to create my own api service for recipes but it would make too much work for me. So, I have founda Edamam API and decided to use it. For authentication and other features I have used Firebase. It was easy to use but I have faced some problems while using it. And that cause me time so some features that I wanted couldn't be implemented. Other feature is ChatGPT. It was popular at that time and I wanted to implement it in my app and I achieved my goal. It created flexibility to app. I provided screenshots of my app and source code link. App is not live because API key and some other services needed to be renewed.    ",
     tags: [
       {
         name: "Flutter",
@@ -207,7 +212,7 @@ const projects = [
       },
     ],
     image: parsley,
-    images: [{image:parsley,title:"screenshot"},{image:starbucks,title:"screenshot2"}],
+    images: [{image:parsley,title:"Parsley App",link:"https://github.com/Honeybadger-png/Flutter-Projects"},{image:ParsleySignIn,title:"SignIn Page",link:""},{image:recipe,title:"Recipe Page",link:""},{image:chatgpt,title:"ChatGPT Page",link:""}],
     source_code_link: "https://github.com/Honeybadger-png/Flutter-Projects",
   },
 ];
