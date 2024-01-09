@@ -9,3 +9,5 @@ Current State:
 - Making my own asset to changed used asset for my table. I try to closest view of my table.
   - Created my laptop monitor and textured them to look good. I have some worry about my asset could have too large for the app and letting asset to load in like 1 min. If this happen i need to work on the topology to - 
     reduce polygons.
+- New Detail page is opened for the project sections to able to show detailed information about my projects and certificates.
+- I wanted to open a admin panel for me to make changes on the main pages from admin panel. I am designing the admin panel for my needs. There might be some features for me to use in further projects.
