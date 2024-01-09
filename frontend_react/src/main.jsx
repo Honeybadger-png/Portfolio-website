@@ -4,9 +4,12 @@ import App from './App.jsx'
 import Details from './pages/Details.jsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
+import { ContextProvider } from './contexts/ContextProvider'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <App />
+    <ContextProvider>
+      <App />
+    </ContextProvider>
   </BrowserRouter>,
 )

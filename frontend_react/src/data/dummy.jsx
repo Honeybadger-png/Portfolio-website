@@ -1,6 +1,8 @@
 import React from 'react';
 import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
 import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
+import { TbListDetails } from "react-icons/tb";
+import { SiHomebridge } from "react-icons/si";
 import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
 import { BiColorFill } from 'react-icons/bi';
 import { IoMdContacts } from 'react-icons/io';
@@ -484,16 +486,20 @@ export const links = [
     title: 'Pages',
     links: [
       {
+        name: 'details',
+        icon: <TbListDetails />,
+      },
+      {
         name: 'orders',
-        icon: <AiOutlineShoppingCart />,
+        icon: <TbListDetails />,
       },
       {
         name: 'employees',
-        icon: <IoMdContacts />,
+        icon: <TbListDetails />,
       },
       {
         name: 'customers',
-        icon: <RiContactsLine />,
+        icon: <TbListDetails />,
       },
     ],
   },
@@ -515,6 +521,10 @@ export const links = [
       {
         name: 'color-picker',
         icon: <BiColorFill />,
+      },
+      {
+        name: 'Home Page',
+        icon: <SiHomebridge />,
       },
     ],
   },
