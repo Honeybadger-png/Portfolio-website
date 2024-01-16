@@ -477,6 +477,7 @@ export const links = [
     links: [
       {
         name: 'ecommerce',
+        path:'admin/',
         icon: <FiShoppingBag />,
       },
     ],
@@ -487,18 +488,22 @@ export const links = [
     links: [
       {
         name: 'details',
+        path:'admin/details',
         icon: <TbListDetails />,
       },
       {
         name: 'orders',
+        path:'admin/orders',
         icon: <TbListDetails />,
       },
       {
         name: 'employees',
+        path:'admin/employees',
         icon: <TbListDetails />,
       },
       {
         name: 'customers',
+        path:'admin/customers',
         icon: <TbListDetails />,
       },
     ],
@@ -508,22 +513,27 @@ export const links = [
     links: [
       {
         name: 'calendar',
+        path:'admin/calendar',
         icon: <AiOutlineCalendar />,
       },
       {
         name: 'kanban',
+        path:'admin/kanban',
         icon: <BsKanban />,
       },
       {
         name: 'editor',
+        path:'admin/editor',
         icon: <FiEdit />,
       },
       {
         name: 'color-picker',
+        path:'admin/color-picker',
         icon: <BiColorFill />,
       },
       {
         name: 'Home Page',
+        path:'',
         icon: <SiHomebridge />,
       },
     ],
@@ -533,35 +543,43 @@ export const links = [
     links: [
       {
         name: 'line',
+        path:'admin/line',
         icon: <AiOutlineStock />,
       },
       {
         name: 'area',
+        path:'admin/area',
         icon: <AiOutlineAreaChart />,
       },
 
       {
         name: 'bar',
+        path:'admin/bar',
         icon: <AiOutlineBarChart />,
       },
       {
         name: 'pie',
+        path:'admin/pie',
         icon: <FiPieChart />,
       },
       {
         name: 'financial',
+        path:'admin/financial',
         icon: <RiStockLine />,
       },
       {
         name: 'color-mapping',
+        path:'admin/color-mapping',
         icon: <BsBarChart />,
       },
       {
         name: 'pyramid',
+        path:'admin/pyramid',
         icon: <GiLouvrePyramid />,
       },
       {
         name: 'stacked',
+        path:'admin/stacked',
         icon: <AiOutlineBarChart />,
       },
     ],
