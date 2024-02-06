@@ -44,7 +44,7 @@ const CreateProject = () => {
     }
     const handleCreateProject =async (event) => {
         const formData = new FormData()
-
+        console.log("deneme");
         formData.append('mainImage',mainFile)
         for (let index = 0 ; index < files.length; index++){
             const file = files[index]
