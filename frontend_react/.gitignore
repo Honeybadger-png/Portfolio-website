@@ -26,3 +26,4 @@ dist-ssr
 #backend files to ignore
 ../backend/node_modules
 ../backend/.env
+.env

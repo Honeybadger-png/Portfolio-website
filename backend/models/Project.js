@@ -31,7 +31,7 @@ const projectSchema = new mongoose.Schema({
         required:true,
     },
     images:[{
-        url:{
+        name:{
             type:String,
             required:true,
         },
@@ -39,10 +39,10 @@ const projectSchema = new mongoose.Schema({
             type:String,
             required:true,
         },
-        link:{
+        url:{
             type:String,
             required:true,
-        },
+        }
     }]
 })
 

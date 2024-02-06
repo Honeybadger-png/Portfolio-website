@@ -4,7 +4,7 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import {FiSettings} from 'react-icons/fi'
 import {TooltipComponent} from '@syncfusion/ej2-react-popups'
 import {Navbar,Footer,Sidebar,ThemeSettings} from '../../components/admin/index'
-import {Ecommerce,Employees,Customers,Kanban,Editor,Calendar,ColorPicker,Line,Area,Bar,Pie,Financial,ColorMapping,Pyramid,Stacked,Orders,CreateProject} from './index'
+import {Ecommerce,Projects,Employees,Customers,Kanban,Editor,Calendar,ColorPicker,Line,Area,Bar,Pie,Financial,ColorMapping,Pyramid,Stacked,Orders,CreateProject} from './index'
 
 import {useStateContext} from '../../contexts/ContextProvider'
 
@@ -45,6 +45,7 @@ const Admin = () => {
                             <Route path='/employees' element={<Employees/>}/>
                             <Route path='/customers' element={<Customers/>}/>
                             <Route path='/details' element={<CreateProject/>}/>
+                            <Route path='/projects' element={<Projects/>}/>
                             {/* Apps */ }
                             <Route path='/kanban' element={<Kanban/>}/>
                             <Route path='/editor' element={<Editor/>}/>

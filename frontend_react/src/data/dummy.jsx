@@ -492,6 +492,11 @@ export const links = [
         icon: <TbListDetails />,
       },
       {
+        name: 'Projects',
+        path:'admin/projects',
+        icon: <TbListDetails />,
+      },
+      {
         name: 'orders',
         path:'admin/orders',
         icon: <TbListDetails />,

@@ -1,6 +1,6 @@
 import express from "express";
 import {getAllTasks,getTask,createTask} from "../controllers/TaskController.js";
-import { uploadMultipleFiles,uploadFile,createProject } from "../controllers/Projectcontroller.js"
+import { uploadMultipleFiles,uploadFile,createProject,dummyCreateProject } from "../controllers/Projectcontroller.js"
 
 import multer from 'multer';
 
@@ -28,10 +28,15 @@ const fileFilter = (req,file,cb) => {
 
 const upload = multer({storage:storage,fileFilter:fileFilter});
 
+const uploadMultiple = multer({storage:storage,fileFilter:fileFilter}).array('images',10);
+const uploadSingle = multer({storage:storage,fileFilter:fileFilter}).single('mainImage');
+
 router.route('/').get(getAllTasks);
 router.route('/create').post(createTask)
 router.route('/fileUpload').post(uploadMultipleFiles,uploadFile)
-router.post('/createProject',upload.fields([{name:'mainImage',maxCount:1},{name:'images',maxCount:10}]),createProject)
+router.post('/uploadFile',upload.fields([{name:'mainImage',maxCount:1},{name:'files',maxCount:10}]),createProject)
+router.post('/createProject',upload.fields([{name:'mainImage',maxCount:1},{name:'files',maxCount:10}]),createProject)
+router.post('/dummyCreateProject',dummyCreateProject);
 
 router.route('/:id').get(getTask);
 

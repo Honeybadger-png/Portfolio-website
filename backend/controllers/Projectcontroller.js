@@ -34,28 +34,9 @@ export const uploadFile =  (req, res,next) => {
 }
 
 export const createProject = async (req,res,next) => {
-    const mainImage = req.files.mainImage[0].path;
-    const imagePaths = req.files.images.map(image => image.path);
-    const {name,description,projectId,source_code_link,projectName} = req.body;
-    const imageTitles = req.body.imageTitles.split(',');
-    const imageLinks = req.body.imageLinks.split(',');
-    const tagNames = req.body.tagNames.split(',');
-    const tagColors = req.body.tagColors.split(',');
-    let images = [];
-    let tags = [];
-    for(let i=0;i<imagePaths.length;i++){
-        images.push({
-            url:imagePaths[i],
-            title:imageTitles[i],
-            link:imageLinks[i],
-        })
-    }
-    for(let i=0;i<tagNames.length;i++){
-        tags.push({
-            name:tagNames[i],
-            color:tagColors[i],
-        })
-    }
+
+    const {name,description,projectId,source_code_link,projectName,images,tags,mainImage} = req.body;
+
 
     const project = new Project ({
         name:name,
@@ -67,6 +48,10 @@ export const createProject = async (req,res,next) => {
         mainImage:mainImage,
         images:images,
     })
-    project.save();
-    res.json(project).status(200)
+    console.log(req.body);
+    res.json(req.file).status(200)
+}
+export const dummyCreateProject = async (req,res,next) => {
+    console.log(req.body);
+    res.json({message:"Project Created"}).status(200);
 }

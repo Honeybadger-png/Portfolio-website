@@ -51,6 +51,38 @@ export const navLinks = [
   },
 ];
 
+export const tagsColor =[
+  {
+    color : "#FA332A"
+  },
+  {
+    color : "#FAAE29"
+  },
+  {
+    color : "#FA732F"
+  },
+  {
+    color : "#FA1DD3"
+  },
+  {
+    color : "#6A34FA"
+  },
+  {
+    color : "#21FAD9"
+  },
+  {
+    color : "#2F87FA"
+  },
+  {
+    color : "#C328FA"
+  },
+  {
+    color : "#FAF240"
+  },
+  {
+    color : "#24FA22"
+  },
+]
 export const detailLinks = [
   {
     id:"home",
