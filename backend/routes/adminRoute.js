@@ -7,15 +7,7 @@ import multer from 'multer';
 const router = express.Router();
 
 
-const storage = multer.diskStorage({
-    destination: function(req,file,cb){
-        cb(null,'../uploads')
-    },
-    filename: function(req,file,cb){
-        const uniqueSuffix = Date.now() + "-"+req.body.name
-        cb(null,file.fieldname + '-'+ uniqueSuffix + '-' + file.originalname)
-    }
-})
+
 
 const fileFilter = (req,file,cb) => {
     if(file.mimetype == 'image/png' || file.mimetype == 'image/jpeg' || file.mimetype == 'image/jpg'){
@@ -26,10 +18,26 @@ const fileFilter = (req,file,cb) => {
     cb(null,true)
 }
 
+const storage = multer.diskStorage({
+    destination: function(req,file,cb){
+        if (file.fieldname === 'mainImage'){
+            cb(null,'../frontend_react/uploads/mainImages')
+        }else if (file.fieldname === 'files'){
+            cb(null,'../frontend_react/uploads/images')
+        }else{
+            cb(null,'../frontend_react/uploads/uploads')
+        }
+    },
+    filename: function(req,file,cb){
+        const uniqueSuffix = Date.now() + "-"+req.body.name
+        cb(null,file.fieldname + '-'+ uniqueSuffix + '-' + file.originalname)
+    
+    }
+})
 const upload = multer({storage:storage,fileFilter:fileFilter});
 
-const uploadMultiple = multer({storage:storage,fileFilter:fileFilter}).array('images',10);
-const uploadSingle = multer({storage:storage,fileFilter:fileFilter}).single('mainImage');
+
+
 
 router.route('/').get(getAllTasks);
 router.route('/create').post(createTask)

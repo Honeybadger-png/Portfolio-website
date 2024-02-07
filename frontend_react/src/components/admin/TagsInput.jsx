@@ -3,12 +3,15 @@ import React,{useState} from 'react'
 import { tagsColor } from '../../constants'
 
 
-function TagsInput  ({setTags,tags}) {
+function TagsInput  ({setTags,tags,setValues}) {
     const [randomColor,setRandomColor] = useState('')
     const handleKeyDown =  (e)=>{
         let number = Math.floor(Math.random() * 10)
         setRandomColor(tagsColor[number])
         if(e.key !=='Enter') return
+        if(e.key === 'Enter') {
+            e.preventDefault();
+        }
         const value = e.target.value
         if(!value.trim()) return
         console.log(randomColor.color);

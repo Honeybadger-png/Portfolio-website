@@ -3,6 +3,9 @@ import axios from 'axios'
 import TagsInput from '../../components/admin/TagsInput'
 import TextInput from '../../components/admin/TextInput'
 import { FaUpload } from "react-icons/fa";
+import { formValidation } from '../../utils/validations';
+import InputError from '../../components/admin/InputError'
+import {AnimatePresence} from 'framer-motion'
 
 
 
@@ -22,35 +25,39 @@ const CreateProject = () => {
     const [isDragging, setIsDragging] = useState(false)
     const LOCAL_URL = process.env.REACT_APP_LOCAL_URL
 
+    const [values, setValues] = useState({
+        name:'',
+        projectId:'',
+        source_code_link:'',
+        description:'',
+        mainImage:'',
+        images:[]
+    })
+    const [errors,setErrors] = useState({})
+    const [tagError,setTagError] = useState('')
 
-
-    const postFile = async (file)=>{
-        const formData = new FormData()
-        formData.append('file',file)
-        formData.append('upload_preset','projectmanager')
-        const response = await axios.post('')
-        const data = await response.json()
-        console.log(data);
+    const handleValidation = async (values) => {
+        setValues({name:name,projectId:projectId,source_code_link:source_code_link,description:description,mainImage:mainImage,images:images})
+        const validation = formValidation(values);
+        setErrors(validation)
     }
-
-    const  postMultipleFiles = async (files) => {
-        const formData = new FormData()
-        for (let i = 0; i < files.length; i++) {
-            formData.append('files',files[i])
+    const handleTagError = (tags) => {
+        if(Object.keys(tags).length === 0){
+            setTagError('Please add a tag')
+        }else {
+            setTagError('')
         }
-        const response = await axios.post('')
-        const data = await response.json()
-        console.log(data);
     }
+
     const handleCreateProject =async (event) => {
         const formData = new FormData()
-        console.log("deneme");
+        handleTagError(tags)
+        handleValidation(values)
         formData.append('mainImage',mainFile)
         for (let index = 0 ; index < files.length; index++){
             const file = files[index]
             formData.append('files',file)
         }
-
         event.preventDefault()
         const project = {
             name,
@@ -61,6 +68,7 @@ const CreateProject = () => {
             mainImage,
             images
         }
+        
         await axios.post(`${LOCAL_URL}/admin/uploadFile`,formData,project
         ).then((response)=> {
             console.log(response);
@@ -130,6 +138,12 @@ const CreateProject = () => {
         setIsDragging(false)
         setImages(event.dataTransfer.files)
     }
+    const handleKeyDown = (event)=>{
+        if(event.key === 'Enter'){
+
+            event.preventDefault();
+        }
+    }
 
 
   return (
@@ -143,14 +157,26 @@ const CreateProject = () => {
                     <div className='flex flex-col w-full '>
                         <div className='flex'>
                             <div className='mx-5 w-6/12'>
-                                <TextInput name="name" setter={setName} label="Project Name" />
-                                <TextInput name="projectId" setter={setProjectId} label="Unique Project Id" />
-                                <TextInput name="source_code_link" setter={setSource_Code_Link} label="Github Source Link" />
+                                <TextInput name="name" setter={setName} label="Project Name" handleKey={handleKeyDown} />
+                                <AnimatePresence mode="wait" initial={false}  >
+                                    {errors.name && <InputError message={errors.name} />}
+                                </AnimatePresence>
+                                <TextInput name="projectId" setter={setProjectId} label="Unique Project Id" handleKey={handleKeyDown} />
+                                <AnimatePresence mode="wait" initial={false}  >
+                                    {errors.projectId && <InputError message={errors.projectId} />}
+                                </AnimatePresence>
+                                <TextInput name="source_code_link" setter={setSource_Code_Link} label="Github Source Link" handleKey={handleKeyDown} />
+                                <AnimatePresence mode="wait" initial={false}  >
+                                    {errors.source_code_link && <InputError message={errors.source_code_link} />}
+                                </AnimatePresence>
                                 <div className='flex justify-start mb-4 py-5'>
                                     {/* ProjectTags*/}
                                     <label htmlFor="" className='text-primary mx-5 font-bold text-xl p-2'> Project Tags</label>
-                                    <TagsInput setTags={setTags} tags={tags} />
+                                    <TagsInput setTags={setTags} tags={tags} setValues={handleValidation} />
                                 </div>
+                                <AnimatePresence mode="wait" initial={false}  >
+                                    {tagError && <InputError message={tagError} />}
+                                </AnimatePresence>
                                 <div className='flex flex-col items-center justify-center w-full text-black bg-transparent border-2 border-dashed rounded-2xl border-purple-500 h-[200px]' onDragOver={onDragOver} onDrop={onDrop}>
                                 {isDragging ? (
                                     <span className='text-black'>Drop images here</span>
@@ -201,7 +227,7 @@ const CreateProject = () => {
                                                 <div className='w-12/12 h-12/12 p-2' key={index}>
                                                     <p key={index} className='text-black cursor-pointer' onClick={()=> deleteImage(index)}>&times;</p>
                                                     <img src={image.url} alt={image.name} />
-                                                    <input type="text" placeholder={"please add a title"} className='flex items-center p-2-0 border-2 border-black-100 p-5  outline-none bg-transparent text-blue-400 ' onChange={(event)=> handleImageTitle(event,index)}  />
+                                                    <input type="text" placeholder={"please add a title"} className='flex items-center p-2-0 border-2 border-black-100 p-5  outline-none bg-transparent text-blue-400 ' onKeyDown={handleKeyDown} onChange={(event)=> handleImageTitle(event,index)}  />
                                                 </div>
                                         ))
                                         
