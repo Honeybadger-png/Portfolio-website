@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
         }else if (file.fieldname === 'files'){
             cb(null,'../frontend_react/uploads/images')
         }else{
-            cb(null,'../frontend_react/uploads/uploads')
+            cb(null,'../frontend_react/uploads/other')
         }
     },
     filename: function(req,file,cb){
