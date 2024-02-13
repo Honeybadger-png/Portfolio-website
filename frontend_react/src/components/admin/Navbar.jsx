@@ -60,10 +60,10 @@ const Navbar = () => {
         <div className='flex items-center gap-2 cursor-pointer p-1 hover:bg-slate-600 rounded-lg' onClick={()=> handleClick('userProfile')}>
           <img src={avatar} className='rounded-full w-8 h-8'/>
           <p>
-            <span className='text-gray-400 text-14' >Hi,</span>{' '}
-            <span className='text-gray-400 font-bold ml-1 text-14'>Michael</span>
+            <span className=' text-14' >Hi,</span>{' '}
+            <span className=' font-bold ml-1 text-14'>Michael</span>
           </p>
-          <MdKeyboardArrowDown className='text-gray-400 text-14' />
+          <MdKeyboardArrowDown className=' text-14' />
         </div>
       </TooltipComponent>
       {isClicked.cart && <Cart/>}

@@ -34,22 +34,31 @@ export const uploadFile =  (req, res,next) => {
 }
 
 export const createProject = async (req,res,next) => {
+    try {
+        
+        const {name,description,projectId,source_code_link,projectName,images,tags,mainImage} = req.body;
+    
+        console.log("body"+req);
+        const project = new Project ({
+            name:name,
+            description:description,
+            projectId:projectId,
+            source_code_link:source_code_link,
+            tags:tags,
+            projectName:projectName,
+            mainImage:mainImage.name,
+            images:images,
+        })
+            
+        await project.save();
 
-    const {name,description,projectId,source_code_link,projectName,images,tags,mainImage} = req.body;
+        res.status(200).json({message:"Project Created"});
+    } catch (error) {
+        res.status(500).json({message:"Something went wrong",error:error.message});
+    }
 
 
-    const project = new Project ({
-        name:name,
-        description:description,
-        projectId:projectId,
-        source_code_link:source_code_link,
-        tags:tags,
-        projectName:projectName,
-        mainImage:mainImage,
-        images:images,
-    })
-    console.log(req.body);
-    res.json(req.file).status(200)
+    
 }
 export const dummyCreateProject = async (req,res,next) => {
     console.log(req.body);

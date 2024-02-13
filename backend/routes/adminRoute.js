@@ -34,7 +34,7 @@ const storage = multer.diskStorage({
     
     }
 })
-const upload = multer({storage:storage,fileFilter:fileFilter});
+const upload = multer({storage:storage,fileFilter:fileFilter}).fields([{name:'mainImage',maxCount:1},{name:'files',maxCount:10}]);
 
 
 
@@ -42,8 +42,17 @@ const upload = multer({storage:storage,fileFilter:fileFilter});
 router.route('/').get(getAllTasks);
 router.route('/create').post(createTask)
 router.route('/fileUpload').post(uploadMultipleFiles,uploadFile)
-router.post('/uploadFile',upload.fields([{name:'mainImage',maxCount:1},{name:'files',maxCount:10}]),createProject)
-router.post('/createProject',upload.fields([{name:'mainImage',maxCount:1},{name:'files',maxCount:10}]),createProject)
+router.post('/uploadFile',function(req,res,next){
+    console.log(req.body);
+    upload(req,res,function(err){
+        if(err){
+            return res.end("error uploading")
+        }
+        res.end("file is uploaded")
+    })
+
+})
+router.post('/createProject',createProject)
 router.post('/dummyCreateProject',dummyCreateProject);
 
 router.route('/:id').get(getTask);

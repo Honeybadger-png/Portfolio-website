@@ -49,6 +49,7 @@ const CreateProject = () => {
         }
     }
 
+
     const handleCreateProject =async (event) => {
         const formData = new FormData()
         handleTagError(tags)
@@ -69,12 +70,16 @@ const CreateProject = () => {
             images
         }
         
-        await axios.post(`${LOCAL_URL}/admin/uploadFile`,formData,project
-        ).then((response)=> {
-            console.log(response);
+        await axios.post(`${LOCAL_URL}/admin/createProject`,project).then((response)=> {
+            console.log(response.status);
+            if (response.status === 200){
+                axios.post(`${LOCAL_URL}/admin/uploadFile`,formData)
+            }
         }).catch((error)=> {
-            console.log(error.response.data);
+            console.log(error);
         })
+        
+
     }
 
     function selectfiles (){
@@ -147,15 +152,14 @@ const CreateProject = () => {
 
 
   return (
-    <div className='flex justify-start m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl'>
-        <div className='pt-5'> 
-            <div className='flex flex-col w-full items-center justify-start mx-5'>
-                <div className='flex mb-10'>
-                    <h1 className='text-primary font-bold'>Create Project</h1>
+    <div className='m-2 md:m-10 p-2 md:p-10 rounded-3xl w-full'>
+        <div className='flex flex-col flex-wrap items-center mx-5 justify-center lg:flex-nowrap rounded-3xl'> 
+                <div className='flex mb-10 '>
+                    <h1 className=' font-bold'>Create Project</h1>
                 </div>
-                <form className='flex w-full justify-center items-center border-2 rounded-xl px-8 pt-6 pb-5 mb-4' onSubmit={handleCreateProject}>
+                <form className='flex w-full justify-center items-center border-2 border-purplish rounded-xl px-8 pt-6 pb-5 mb-4' onSubmit={handleCreateProject}>
                     <div className='flex flex-col w-full '>
-                        <div className='flex'>
+                        <div className='flex flex-row w-full'>
                             <div className='mx-5 w-6/12'>
                                 <TextInput name="name" setter={setName} label="Project Name" handleKey={handleKeyDown} />
                                 <AnimatePresence mode="wait" initial={false}  >
@@ -171,23 +175,23 @@ const CreateProject = () => {
                                 </AnimatePresence>
                                 <div className='flex justify-start mb-4 py-5'>
                                     {/* ProjectTags*/}
-                                    <label htmlFor="" className='text-primary mx-5 font-bold text-xl p-2'> Project Tags</label>
+                                    <label htmlFor="" className=' mx-5 font-bold text-xl p-2'> Project Tags</label>
                                     <TagsInput setTags={setTags} tags={tags} setValues={handleValidation} />
                                 </div>
                                 <AnimatePresence mode="wait" initial={false}  >
                                     {tagError && <InputError message={tagError} />}
                                 </AnimatePresence>
-                                <div className='flex flex-col items-center justify-center w-full text-black bg-transparent border-2 border-dashed rounded-2xl border-purple-500 h-[200px]' onDragOver={onDragOver} onDrop={onDrop}>
+                                <div className='flex flex-col items-center justify-center w-full bg-transparent border-2 border-dashed rounded-2xl border-purple-500 h-[200px]' onDragOver={onDragOver} onDrop={onDrop}>
                                 {isDragging ? (
-                                    <span className='text-black'>Drop images here</span>
+                                    <span className=''>Drop images here</span>
                                 ):(
                                     <>
                                         Drag Single Image for Main Page {""}
-                                        <span className='text-purple-500' role='button' onClick={selectFile}>
+                                        <span className='text-purplish' role='button' onClick={selectFile}>
                                             Browse
                                         </span>
                                         <div className='flex'>
-                                            <FaUpload className='text-purple-500 text-2xl m-2' />
+                                            <FaUpload className='text-purplish text-2xl m-2' />
                                         </div>
                                     </>
                                 )}
@@ -197,7 +201,7 @@ const CreateProject = () => {
                                     {
                                         mainImage ? (
                                             <div className='w-12/12 h-12/12 p-2'>
-                                                <p className='text-black cursor-pointer' onClick={()=> deleteMainImage(0)}>&times;</p>
+                                                <p className=' cursor-pointer' onClick={()=> deleteMainImage(0)}>&times;</p>
                                                 <img className='' src={mainImage.url} alt={mainImage.name} />
                                             </div>
                                         ) : null
@@ -205,29 +209,29 @@ const CreateProject = () => {
                                 </div>
                             </div>
                             <div className='flex flex-col justify-center items-start w-6/12 mx-5 h-full'>
-                                <div className='flex flex-col items-center justify-center w-full text-black bg-transparent border-2 border-dashed rounded-2xl border-purple-500 h-[200px]' onDragOver={onDragOver} onDrop={onDrop}>
+                                <div className='flex flex-col items-center justify-center w-full  bg-transparent border-2 border-dashed rounded-2xl border-purple-500 h-[200px]' onDragOver={onDragOver} onDrop={onDrop}>
                                 {isDragging ? (
-                                    <span className='text-black'>Drop images here</span>
+                                    <span className=''>Drop images here</span>
                                 ):(
                                     <>
                                         Drag & Drop image here or {""}
-                                        <span className='text-purple-500' role='button' onClick={selectfiles}>
+                                        <span className='text-purplish' role='button' onClick={selectfiles}>
                                             Browse
                                         </span>
                                         <div className='flex'>
-                                            <FaUpload className='text-purple-500 text-2xl m-2' />
+                                            <FaUpload className='text-purplish text-2xl m-2' />
                                         </div>
                                     </>
                                 )}
                                 <input type="file" multiple ref={inputRef} hidden onChange={(event) => handleFiles(event)} />
                                 </div>
-                                <div className='w-full flex justify-start items-start flex-wrap h-[200px] bg-white rounded-xl  max-h-[200px] overflow-y-auto mt-5'>
+                                <div className='w-full flex justify-start items-start flex-wrap h-[400px] rounded-xl  max-h-[400px] overflow-y-auto mt-5'>
                                     {
                                         images.map((image,index)=>(
                                                 <div className='w-12/12 h-12/12 p-2' key={index}>
-                                                    <p key={index} className='text-black cursor-pointer' onClick={()=> deleteImage(index)}>&times;</p>
+                                                    <p key={index} className=' cursor-pointer' onClick={()=> deleteImage(index)}>&times;</p>
                                                     <img src={image.url} alt={image.name} />
-                                                    <input type="text" placeholder={"please add a title"} className='flex items-center p-2-0 border-2 border-black-100 p-5  outline-none bg-transparent text-blue-400 ' onKeyDown={handleKeyDown} onChange={(event)=> handleImageTitle(event,index)}  />
+                                                    <input type="text" placeholder={"please add a title"} className='flex items-center p-2-0 border-2 border-black-100 p-5  outline-none bg-transparent text-purplish ' onKeyDown={handleKeyDown} onChange={(event)=> handleImageTitle(event,index)}  />
                                                 </div>
                                         ))
                                         
@@ -239,16 +243,16 @@ const CreateProject = () => {
                         <div className='flex'>
                             <div className='flex flex-col items-center justify-center mb-4 py-5'>
                                     {/* ProjectDescription*/}
-                                    <label htmlFor="" className='text-primary mx-5 font-bold text-2xl'>Project Description</label>
-                                    <textarea name="description" id="description" cols="90" rows="10" className='items-center rounded-md bg-transparent border-2 border-black-100 text-teal-400 p-5' onChange={(event)=> setDescription(event.target.value)}></textarea>
+                                    <label htmlFor="" className='mx-5 font-bold text-2xl'>Project Description</label>
+                                    <textarea name="description" id="description" cols="90" rows="10" className='items-center rounded-md bg-transparent border-2 border-purplish  text-purplish p-5' onChange={(event)=> setDescription(event.target.value)}></textarea>
                             </div>
                         </div>
                         <div className='flex w-full items-center justify-center' type="submit">
-                            <button className='rounded-xl bg-slate-800 p-2'>Create</button>
+                            <button className='rounded-2xl bg-purplish p-3'>Create</button>
                         </div>
                     </div>
                 </form>
-            </div>
+
         </div>
     </div>
   )
