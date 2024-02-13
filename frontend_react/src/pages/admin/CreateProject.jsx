@@ -51,15 +51,8 @@ const CreateProject = () => {
 
 
     const handleCreateProject =async (event) => {
-        const formData = new FormData()
-        handleTagError(tags)
-        handleValidation(values)
-        formData.append('mainImage',mainFile)
-        for (let index = 0 ; index < files.length; index++){
-            const file = files[index]
-            formData.append('files',file)
-        }
         event.preventDefault()
+        const formData = new FormData()
         const project = {
             name,
             projectId,
@@ -69,15 +62,26 @@ const CreateProject = () => {
             mainImage,
             images
         }
+        formData.append('uniqueId',projectId);
+        formData.append('projectName',name);
+        handleTagError(tags)
+        handleValidation(values)
+        formData.append('mainImage',mainFile)
+        for (let index = 0 ; index < files.length; index++){
+            const file = files[index]
+            formData.append('files',file)
+        }
+        
+        
         
         await axios.post(`${LOCAL_URL}/admin/createProject`,project).then((response)=> {
-            console.log(response.status);
             if (response.status === 200){
                 axios.post(`${LOCAL_URL}/admin/uploadFile`,formData)
             }
         }).catch((error)=> {
             console.log(error);
         })
+
         
 
     }

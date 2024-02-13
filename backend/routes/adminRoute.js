@@ -1,6 +1,7 @@
 import express from "express";
 import {getAllTasks,getTask,createTask} from "../controllers/TaskController.js";
 import { uploadMultipleFiles,uploadFile,createProject,dummyCreateProject,getProjects,getProject } from "../controllers/Projectcontroller.js"
+import Project from '../models/Project.js';
 
 import multer from 'multer';
 
@@ -29,7 +30,7 @@ const storage = multer.diskStorage({
         }
     },
     filename: function(req,file,cb){
-        const uniqueSuffix = Date.now() + "-"+req.body.name
+        const uniqueSuffix = req.body.projectName + "-"+req.body.uniqueId
         cb(null,file.fieldname + '-'+ uniqueSuffix + '-' + file.originalname)
     
     }
@@ -42,15 +43,16 @@ const upload = multer({storage:storage,fileFilter:fileFilter}).fields([{name:'ma
 router.route('/').get(getAllTasks);
 router.route('/create').post(createTask)
 router.route('/fileUpload').post(uploadMultipleFiles,uploadFile)
-router.post('/uploadFile',function(req,res,next){
-    console.log(req.body);
+router.post('/uploadFile',async function(req,res,next){
+   
     upload(req,res,function(err){
         if(err){
-            return res.end("error uploading")
+            console.log(err);
+            return res.status(500).json({message:err.message})
         }
-        res.end("file is uploaded")
+        res.status(200).json({message:"Files uploaded successfully",files:req.files})
     })
-
+    
 })
 router.post('/createProject',createProject)
 router.post('/dummyCreateProject',dummyCreateProject);
