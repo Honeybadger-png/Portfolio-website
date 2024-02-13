@@ -36,8 +36,8 @@ const CreateProject = () => {
     const [errors,setErrors] = useState({})
     const [tagError,setTagError] = useState('')
 
-    const handleValidation = async (values) => {
-        setValues({name:name,projectId:projectId,source_code_link:source_code_link,description:description,mainImage:mainImage,images:images})
+    const handleValidation =  (values) => {
+        setValues({name,projectId,source_code_link,description,mainImage,images})
         const validation = formValidation(values);
         setErrors(validation)
     }
@@ -161,15 +161,15 @@ const CreateProject = () => {
                     <div className='flex flex-col w-full '>
                         <div className='flex flex-row w-full'>
                             <div className='mx-5 w-6/12'>
-                                <TextInput name="name" setter={setName} label="Project Name" handleKey={handleKeyDown} />
+                                <TextInput name="name" setter={setName} label="Project Name" handleKey={handleKeyDown} values={values}  setValue={setValues} />
                                 <AnimatePresence mode="wait" initial={false}  >
                                     {errors.name && <InputError message={errors.name} />}
                                 </AnimatePresence>
-                                <TextInput name="projectId" setter={setProjectId} label="Unique Project Id" handleKey={handleKeyDown} />
+                                <TextInput name="projectId" setter={setProjectId} label="Unique Project Id" handleKey={handleKeyDown} values={values}  setValue={setValues} />
                                 <AnimatePresence mode="wait" initial={false}  >
                                     {errors.projectId && <InputError message={errors.projectId} />}
                                 </AnimatePresence>
-                                <TextInput name="source_code_link" setter={setSource_Code_Link} label="Github Source Link" handleKey={handleKeyDown} />
+                                <TextInput name="source_code_link" setter={setSource_Code_Link} label="Github Source Link" handleKey={handleKeyDown} values={values}  setValue={setValues} />
                                 <AnimatePresence mode="wait" initial={false}  >
                                     {errors.source_code_link && <InputError message={errors.source_code_link} />}
                                 </AnimatePresence>

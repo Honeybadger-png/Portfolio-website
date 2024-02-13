@@ -1,12 +1,15 @@
+
 import React from 'react'
 
 
-const TextInput = ({name,setter,label,handleKey}) => {
+const TextInput = ({name,setter,label,handleKey,values,setValue}) => {
 
 
 
   const handleChange = (e) => {
     setter(e.target.value)
+    const newObj = {...values,[name]:e.target.value}
+    setValue(newObj)
   }
 
   return (

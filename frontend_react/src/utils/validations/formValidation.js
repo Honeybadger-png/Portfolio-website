@@ -1,6 +1,6 @@
 export default function Validation(values){
     const errors = {};
-        if (!values.name) {
+        if (values.name === "") {
             errors.name = "Project Name is required";
         }
         if(!values.projectId){
