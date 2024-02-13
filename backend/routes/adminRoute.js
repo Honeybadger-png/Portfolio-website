@@ -1,6 +1,6 @@
 import express from "express";
 import {getAllTasks,getTask,createTask} from "../controllers/TaskController.js";
-import { uploadMultipleFiles,uploadFile,createProject,dummyCreateProject,getProjects } from "../controllers/Projectcontroller.js"
+import { uploadMultipleFiles,uploadFile,createProject,dummyCreateProject,getProjects,getProject } from "../controllers/Projectcontroller.js"
 
 import multer from 'multer';
 
@@ -53,8 +53,9 @@ router.post('/uploadFile',function(req,res,next){
 
 })
 router.post('/createProject',createProject)
-router.get('projects',getProjects)
 router.post('/dummyCreateProject',dummyCreateProject);
+router.get('/projects',getProjects)
+router.get('/project',getProject)
 
 router.route('/:id').get(getTask);
 
