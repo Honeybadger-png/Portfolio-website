@@ -56,9 +56,15 @@ export const createProject = async (req,res,next) => {
     } catch (error) {
         res.status(500).json({message:"Something went wrong",error:error.message});
     }
+}
 
-
-    
+export const getProjects = async (req,res,next) => {
+    try {
+        const projects = await Project.find();
+        res.status(200).json(projects);
+    } catch (error) {
+        res.status(500).json({message:"Something went wrong",error:error.message});
+    }
 }
 export const dummyCreateProject = async (req,res,next) => {
     console.log(req.body);
