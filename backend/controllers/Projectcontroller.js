@@ -36,7 +36,7 @@ export const uploadFile =  (req, res,next) => {
 export const createProject = async (req,res,next) => {
     try {
         
-        const {name,description,projectId,source_code_link,projectName,images,tags,mainImage} = req.body;
+        const {name,description,projectId,source_code_link,images,tags,mainImage} = req.body;
     
         console.log("body"+req);
         const project = new Project ({
@@ -45,7 +45,6 @@ export const createProject = async (req,res,next) => {
             projectId:projectId,
             source_code_link:source_code_link,
             tags:tags,
-            projectName:projectName,
             mainImage:mainImage.name,
             images:images,
         })

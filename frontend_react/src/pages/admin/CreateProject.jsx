@@ -165,15 +165,15 @@ const CreateProject = () => {
                     <div className='flex flex-col w-full '>
                         <div className='flex flex-row w-full'>
                             <div className='mx-5 w-6/12'>
-                                <TextInput name="name" setter={setName} label="Project Name" handleKey={handleKeyDown} values={values}  setValue={setValues} />
+                                <TextInput name="name" setter={setName} label="Project Name" setValue = {name} handleKey={handleKeyDown} values={values}  setValues={setValues} />
                                 <AnimatePresence mode="wait" initial={false}  >
                                     {errors.name && <InputError message={errors.name} />}
                                 </AnimatePresence>
-                                <TextInput name="projectId" setter={setProjectId} label="Unique Project Id" handleKey={handleKeyDown} values={values}  setValue={setValues} />
+                                <TextInput name="projectId" setter={setProjectId} label="Unique Project Id" setValue = {projectId} handleKey={handleKeyDown} values={values}  setValues={setValues} />
                                 <AnimatePresence mode="wait" initial={false}  >
                                     {errors.projectId && <InputError message={errors.projectId} />}
                                 </AnimatePresence>
-                                <TextInput name="source_code_link" setter={setSource_Code_Link} label="Github Source Link" handleKey={handleKeyDown} values={values}  setValue={setValues} />
+                                <TextInput name="source_code_link" setter={setSource_Code_Link} label="Github Source Link" setValue = {source_code_link} handleKey={handleKeyDown} values={values}  setValues={setValues} />
                                 <AnimatePresence mode="wait" initial={false}  >
                                     {errors.source_code_link && <InputError message={errors.source_code_link} />}
                                 </AnimatePresence>

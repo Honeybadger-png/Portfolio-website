@@ -10,8 +10,8 @@ const projectSchema = new mongoose.Schema({
         required:true,
         unique:true,
     },
-    souce_code_link:{
-        type:String,
+    source_code_link:{
+        type:String
     },
     description:{
         type:String
