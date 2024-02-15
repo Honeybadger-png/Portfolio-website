@@ -492,8 +492,8 @@ export const links = [
         icon: <TbListDetails />,
       },
       {
-        name: 'Projects',
-        path:'admin/projects',
+        name: 'Projects Syncfusion',
+        path:'admin/projectsSync',
         icon: <TbListDetails />,
       },
       {

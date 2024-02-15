@@ -57,7 +57,7 @@ router.post('/uploadFile',async function(req,res,next){
 router.post('/createProject',createProject)
 router.post('/dummyCreateProject',dummyCreateProject);
 router.get('/projects',getProjects)
-router.get('/project',getProject)
+router.get('/project/:projectId',getProject)
 
 router.route('/:id').get(getTask);
 

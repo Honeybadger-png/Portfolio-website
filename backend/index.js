@@ -14,7 +14,7 @@ app.use(cors());
 app.get("/",(req,res)=> {
     return res.status(200).json({message: "Hello World!"});
 })
-app.use('/admin',adminRoute);
+app.use('/api/admin',adminRoute);
 app.use('/auth',auth);
 
 

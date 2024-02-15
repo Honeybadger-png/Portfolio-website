@@ -69,7 +69,8 @@ export const getProjects = async (req,res,next) => {
 
 export const getProject = async (req,res,next) => {
     try {
-        const project = await Project.findById(req.body.id);
+        const projectId = req.params.projectId;
+        const project = await Project.findOne({projectId:projectId});
         res.status(200).json(project);
     } catch (error) {
         res.status(500).json({message:"Something went wrong",error:error.message});
