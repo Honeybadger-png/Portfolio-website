@@ -45,7 +45,7 @@ export const createProject = async (req,res,next) => {
             projectId:projectId,
             source_code_link:source_code_link,
             tags:tags,
-            mainImage:mainImage.name,
+            mainImage:mainImage.source,
             images:images,
         })
             

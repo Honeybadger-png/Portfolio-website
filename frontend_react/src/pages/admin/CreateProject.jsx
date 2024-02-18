@@ -72,8 +72,6 @@ const CreateProject = () => {
             formData.append('files',file)
         }
         
-        
-        
         await axios.post(`${LOCAL_URL}/admin/createProject`,project).then((response)=> {
             if (response.status === 200){
                 axios.post(`${LOCAL_URL}/admin/uploadFile`,formData)
@@ -81,9 +79,6 @@ const CreateProject = () => {
         }).catch((error)=> {
             console.log(error);
         })
-
-        
-
     }
 
     function selectfiles (){
@@ -119,11 +114,10 @@ const CreateProject = () => {
         if(file.type.split('/')[0] !== 'image') return;
         setMainImage(
             {
-                name: file.name,
+                source: file.name,
                 url: URL.createObjectURL(file),
             }
         )
-
     }
 
     function handleImageTitle(event,index){

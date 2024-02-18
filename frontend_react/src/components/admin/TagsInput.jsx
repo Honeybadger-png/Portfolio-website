@@ -32,7 +32,7 @@ function TagsInput  ({setTags,tags,setValues}) {
                 <span className='h-5 w-5 bg-slate-700 inline-flex text-white rounded-xl justify-center items-center ml-2 text-[18px] cursor-pointer' onClick={()=> removeTag(index)}>&times;</span>
             </div>
         ))}
-        <input type="text" placeholder='Add a tag' className='flex-grow-1 p-2-0 border-none outline-none bg-transparent text-purplish ' onKeyDown={handleKeyDown}  />
+        <input type="text" placeholder='Add a tag'  className='flex-grow-1 p-2-0 border-none outline-none bg-transparent text-purplish ' onKeyDown={handleKeyDown}  />
     </div>
   )
 }
