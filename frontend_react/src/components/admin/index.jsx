@@ -8,6 +8,7 @@ export { default as Footer } from './Footer';
 export { default as Cart } from './Cart';
 export { default as Chat } from './Chat';
 export {default as InputError} from './InputError';
+export {default as SuccesNotification} from './SuccesNotification';
 export {default as DragAndDrop} from './DragAndDrop';
 export { default as Notification } from './Notification';
 export { default as UserProfile } from './UserProfile';

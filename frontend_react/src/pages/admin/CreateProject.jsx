@@ -6,6 +6,8 @@ import { FaUpload } from "react-icons/fa";
 import { formValidation } from '../../utils/validations';
 import InputError from '../../components/admin/InputError'
 import {AnimatePresence} from 'framer-motion'
+import SuccesNotification from '../../components/admin/SuccesNotification'
+
 
 
 
@@ -24,6 +26,7 @@ const CreateProject = () => {
     const mainInputRef = useRef(null)
     const [isDragging, setIsDragging] = useState(false)
     const LOCAL_URL = process.env.REACT_APP_LOCAL_URL
+    const [isSuccess, setIsSuccess] = useState()
 
     const [values, setValues] = useState({
         name:'',
@@ -75,6 +78,7 @@ const CreateProject = () => {
         await axios.post(`${LOCAL_URL}/admin/createProject`,project).then((response)=> {
             if (response.status === 200){
                 axios.post(`${LOCAL_URL}/admin/uploadFile`,formData)
+                setIsSuccess(true)
             }
         }).catch((error)=> {
             console.log(error);
@@ -151,9 +155,16 @@ const CreateProject = () => {
 
   return (
     <div className='m-2 md:m-10 p-2 md:p-10 rounded-3xl w-full'>
+        {
+            isSuccess &&
+            <div className=''>
+                <SuccesNotification isSucces={isSuccess}  setter={setIsSuccess}  />
+            </div>
+        }
         <div className='flex flex-col flex-wrap items-center mx-5 justify-center lg:flex-nowrap rounded-3xl'> 
                 <div className='flex mb-10 '>
                     <h1 className=' font-bold'>Create Project</h1>
+                    
                 </div>
                 <form className='flex w-full justify-center items-center border-2 border-purplish rounded-xl px-8 pt-6 pb-5 mb-4' onSubmit={handleCreateProject}>
                     <div className='flex flex-col w-full '>
